@@ -11,6 +11,7 @@ class Pais(models.Model):
 
     def url(self, filename):
         ruta = "MultimediaData/paises/%s/%s" % (self.nombre, filename)
+        return ruta
 
     nombre = models.CharField(max_length=40, unique=True)
     bandera = models.ImageField(upload_to=url, blank=True, null=True)
@@ -24,6 +25,7 @@ class Usuario(models.Model):
 
     def url(self, filename):
         ruta = "MultimediaData/avatares/%s/%s" % (self.user.username, filename)
+        return ruta
 
     user = models.OneToOneField(User)
     puntos = models.IntegerField(default=0)
@@ -38,6 +40,7 @@ class Ingrediente(models.Model):
 
     def url(self, filename):
         ruta = "MultimediaData/ingredientes/%s/%s" % (self.nombre, filename)
+        return ruta
 
     nombre  = models.CharField(max_length=100, unique=True)
     foto    = models.ImageField(upload_to=url, blank=True, null=True)
@@ -51,6 +54,7 @@ class Receta(models.Model):
 
     def url(self, filename):
         ruta = "MultimediaData/recetas/%s/%s" % (self.nombre, filename)
+        return ruta
 
     nombre          = models.CharField(max_length=100, blank=False, null=False, unique=True)
     popularidad     = models.IntegerField(default=0)
