@@ -35,7 +35,15 @@ class Usuario(models.Model):
         return self.user.email
 
 
+class Categoria(models.Model):
+    
+    nombre = models.CharField(max_length=60, blank=False, null=False, unique=True) 
+    descripcion = models.TextField(max_length=120, blank=False, null=False, unique=True)
 
+    def __unicode__(self):
+        return self.nombre
+        
+        
 class Ingrediente(models.Model):
 
     def url(self, filename):
@@ -64,7 +72,7 @@ class Receta(models.Model):
     esDelDia        = models.BooleanField(default=False, null=False)
     fecha           = models.DateField(default=date.today(), blank=False, null=False)
     pais            = models.ForeignKey('Pais')
-    categoria       = models.CharField(max_length=3, choices=categorias)
+    categoria       = models.ManyToManyField('Categoria', blank=False, null=False)
     foto            = models.ImageField(upload_to=url, blank=True, null=True)
 
     def __unicode__(self):
