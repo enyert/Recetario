@@ -10,7 +10,7 @@ categorias = (('POS', 'Postre'),('CEN', 'Cena'),)
 class Pais(models.Model):
 
     def url(self, filename):
-        ruta = "media/paises/%s/%s" % (self.nombre, filename)
+        ruta = "MultimediaData/paises/%s/%s" % (self.nombre, filename)
 
     nombre = models.CharField(max_length=40, unique=True)
     bandera = models.ImageField(upload_to=url, blank=True, null=True)
@@ -23,7 +23,7 @@ class Pais(models.Model):
 class Usuario(models.Model):
 
     def url(self, filename):
-        ruta = "media/avatares/%s/%s" % (self.user.username, filename)
+        ruta = "MultimediaData/avatares/%s/%s" % (self.user.username, filename)
 
     user = models.OneToOneField(User)
     puntos = models.IntegerField(default=0)
@@ -37,7 +37,7 @@ class Usuario(models.Model):
 class Ingrediente(models.Model):
 
     def url(self, filename):
-        ruta = "media/ingredientes/%s/%s" % (self.nombre, filename)
+        ruta = "MultimediaData/ingredientes/%s/%s" % (self.nombre, filename)
 
     nombre  = models.CharField(max_length=100, unique=True)
     foto    = models.ImageField(upload_to=url, blank=True, null=True)
@@ -50,7 +50,7 @@ class Ingrediente(models.Model):
 class Receta(models.Model):
 
     def url(self, filename):
-        ruta = "media/recetas/%s/%s" % (self.nombre, filename)
+        ruta = "MultimediaData/recetas/%s/%s" % (self.nombre, filename)
 
     nombre          = models.CharField(max_length=100, blank=False, null=False, unique=True)
     popularidad     = models.IntegerField(default=0)
