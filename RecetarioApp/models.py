@@ -4,16 +4,13 @@ from django.contrib.auth.models import User
 
 
 
-categorias = (('POS', 'Postre'),('CEN', 'Cena'),)
-
-
 class Pais(models.Model):
 
     def url(self, filename):
         ruta = "MultimediaData/paises/%s/%s" % (self.nombre, filename)
         return ruta
 
-    nombre = models.CharField(max_length=40, unique=True)
+    nombre  = models.CharField(max_length=40, unique=True)
     bandera = models.ImageField(upload_to=url, blank=True, null=True)
 
     def __unicode__(self):
@@ -27,9 +24,10 @@ class Usuario(models.Model):
         ruta = "MultimediaData/avatares/%s/%s" % (self.user.username, filename)
         return ruta
 
-    user = models.OneToOneField(User)
-    puntos = models.IntegerField(default=0)
-    avatar = models.ImageField(upload_to=url, blank=True, null=True)
+    user    = models.OneToOneField(User)
+    puntos  = models.IntegerField(default=0)
+    avatar  = models.ImageField(upload_to=url, blank=True, null=True)
+    pais    = models.ForeignKey('Pais')
 
     def __unicode__(self):
         return self.user.email
@@ -37,7 +35,7 @@ class Usuario(models.Model):
 
 class Categoria(models.Model):
     
-    nombre = models.CharField(max_length=60, blank=False, null=False, unique=True) 
+    nombre      = models.CharField(max_length=60, blank=False, null=False, unique=True)
     descripcion = models.TextField(max_length=120, blank=False, null=False, unique=True)
 
     def __unicode__(self):
@@ -73,7 +71,11 @@ class Receta(models.Model):
     fecha           = models.DateField(default=date.today(), blank=False, null=False)
     pais            = models.ForeignKey('Pais')
     categoria       = models.ManyToManyField('Categoria', blank=False, null=False)
-    foto            = models.ImageField(upload_to=url, blank=True, null=True)
+    foto1           = models.ImageField(upload_to=url, blank=True, null=True)
+    foto2           = models.ImageField(upload_to=url, blank=True, null=True)
+    foto3           = models.ImageField(upload_to=url, blank=True, null=True)
+    foto4           = models.ImageField(upload_to=url, blank=True, null=True)
+    foto5           = models.ImageField(upload_to=url, blank=True, null=True)
 
     def __unicode__(self):
         return self.nombre;
