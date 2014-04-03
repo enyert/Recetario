@@ -4,7 +4,7 @@ from django.conf.urls import patterns, include, url
 from django.contrib import admin
 admin.autodiscover()
 
-urlpatterns = patterns('',
+urlpatterns = patterns('RecetarioApp.views',
     # Examples:
     # url(r'^$', 'Recetario.views.home', name='home'),
     # url(r'^Recetario/', include('Recetario.foo.urls')),
@@ -14,4 +14,6 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^ws/recetasPorCategoria/(?P<clave>.*)/$', 'buscarRecetasPorCategoria'),
+    url(r'^ws/recetasPorIngredientes/(?P<lista_ingredientes>.*)/$', 'buscarRecetasPorIngredientes'),
 )

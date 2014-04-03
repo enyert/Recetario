@@ -23,6 +23,8 @@ def buscarRecetasPorIngredientes(request, lista_ingredientes):
         recetas = Receta.objects.filter(ingredientes__nombre__icontains = claves[0])
         for i in range(1,len(claves)):
             recetas = recetas.filter(ingredientes__nombre__icontains = claves[i])
+        data = serializar(recetas)
+        return HttpResponse(data, mimetype='application/json')
     else:
         return Http404
 
