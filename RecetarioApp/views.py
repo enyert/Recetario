@@ -2,7 +2,6 @@ from RecetarioApp.models import *
 from django.http import HttpResponse, Http404
 from django.core import serializers
 from django.contrib.auth.models import User
-import operator
 from django.db.models import Q
 
 def serializar(lista):
